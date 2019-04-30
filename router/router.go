@@ -13,8 +13,8 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	g.GET("/ping", func(c *gin.Context) {
 		c.String(http.StatusOK, "OK\n")
 	})
-	g.GET("/index", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.tmpl", gin.H{
+	g.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", gin.H{
 			"title": "index title",
 		})
 	})
