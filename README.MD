@@ -8,6 +8,8 @@
 
 ## 目录结构
 
+```
+
 ├── Makefile
 ├── README.MD
 ├── admin.sh
@@ -53,7 +55,7 @@
 └── templates
     └── index.html
 
-
+```
 
 static 目录下是放静态的html 页面 , 在博客首页会自动列出 static 下所有文件的名称
 
