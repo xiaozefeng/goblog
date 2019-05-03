@@ -40,8 +40,6 @@
 ├── conf
 │   └── config.yaml
 ├── favicon.ico
-├── gin.log
-├── goblog
 ├── handler
 │   └── blog
 │       ├── blog.go
