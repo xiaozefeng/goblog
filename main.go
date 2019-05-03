@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/viper"
 	"github.com/xiaozefeng/goblog/router"
 	"github.com/xiaozefeng/wbdc/config"
+	"html/template"
 	"io"
 	"log"
 	"net/http"
@@ -30,11 +31,13 @@ func main() {
 	gin.DefaultWriter = io.MultiWriter(f)
 	g := gin.New()
 	gin.DisableConsoleColor()
-	g.Static("/assets", "./assets")
-	g.StaticFile("/favicon.ico", "./resources/favicon.ico")
+	g.SetFuncMap(template.FuncMap{
+		"remainder": remainder,
+	})
 	g.LoadHTMLGlob("templates/*")
+	g.StaticFile("/favicon.ico", "./favicon.ico")
+	g.Static("/assets", "./assets")
 	var mw []gin.HandlerFunc
-
 	router.Load(g, mw...)
 
 	go func() {
@@ -59,4 +62,8 @@ func pingServer() error {
 		time.Sleep(time.Second)
 	}
 	return errors.New("can not connect the router")
+}
+
+func remainder(i, j int) int {
+	return i % j
 }
